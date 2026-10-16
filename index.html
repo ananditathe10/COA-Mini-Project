@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cache Memory Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <small>COA MICRO-PROJECT</small>
+    <h1>Cache Memory Simulator</h1>
+    <p>Learn how memory blocks are stored in cache.</p>
+  </header>
+
+  <section class="card">
+    <h2>Simulation Settings</h2>
+    <div class="inputs">
+      <label>Mapping Method
+        <select id="method">
+          <option value="direct">Direct Mapping</option>
+          <option value="full">Fully Associative</option>
+          <option value="set">Set-Associative</option>
+        </select>
+      </label>
+      <label>Cache Size (bytes)
+        <input id="size" type="number" value="16" min="4">
+      </label>
+      <label>Block Size (bytes)
+        <input id="blockSize" type="number" value="4" min="1">
+      </label>
+      <label id="waysBox" hidden>Ways per Set
+        <input id="ways" type="number" value="2" min="1">
+      </label>
+      <label class="addresses">Memory Addresses
+        <input id="addresses" value="0, 4, 0, 8, 16, 4, 0, 20">
+      </label>
+    </div>
+
+    <button id="start">▶ Start</button>
+    <button id="next" disabled>Next Step →</button>
+    <button id="reset" class="light">Reset</button>
+    <p id="message">Enter settings and start the simulation.</p>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><span>Total Accesses</span><b id="accesses">0</b></div>
+    <div class="stat green"><span>Cache Hits</span><b id="hits">0</b></div>
+    <div class="stat orange"><span>Cache Misses</span><b id="misses">0</b></div>
+    <div class="stat purple"><span>Hit Rate</span><b id="rate">0%</b></div>
+  </section>
+
+  <div class="columns">
+    <section class="card">
+      <h2>Cache Memory</h2>
+      <div id="cache" class="cache">
+        Start the simulation to see cache lines.
+      </div>
+    </section>
+    <section class="card">
+      <h2>Step Explanation</h2>
+      <p id="explain">Click Start, then Next Step.</p>
+      <div class="track"><div id="bar"></div></div>
+      <p id="progress">0 / 0 steps</p>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>Simulation History</h2>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Step</th><th>Address</th><th>Block</th>
+            <th>Line</th><th>Tag</th><th>Result</th>
+          </tr>
+        </thead>
+        <tbody id="history">
+          <tr><td colspan="6">Results appear here.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <footer>Computer Organization & Architecture</footer>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
